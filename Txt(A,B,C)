@@ -1,0 +1,51 @@
+/*******************************************
+*Function：Get in the datas of txt file which are arranged in a format of A,B,C
+*Test file：read.txt
+*******************************************/
+#include <iostream>
+#include <fstream>
+
+using namespace std;     //读取A，B，C形式txt数据 
+
+#define NUM 3000
+#define SI 1000
+
+int i=0,Datalen=-1,len; 
+double Data[NUM],T1[SI],T2[SI],T3[SI];
+string temp;
+char char1[20]="";
+char seps[]=","; 
+char* ca1;
+
+int main(void)
+{
+ // 开始读取。
+ ifstream fin("read_v2.0.txt");  //file name
+ if( ! fin )
+ {
+  cerr<<"Can not open datain1 file."<<endl;
+  getchar();
+  return 1;
+ };
+
+ while( !fin.eof() )
+ {
+  getline(fin,temp);
+  strcpy(char1,temp.c_str());
+  ca1= strtok(char1,seps);
+  T1[i]=atof(ca1);//将字符数组ca1对应的数据赋值给浮点型变量a1中
+  ca1= strtok(NULL,seps);
+  T2[i]=atof(ca1);
+  ca1= strtok(NULL,seps);
+  T3[i]=atof(ca1); 
+  i++;
+ };
+ int count=i;
+ fin.close();    // 读取完毕 
+/* for(i=0;i<count;i++){    //输出三个数组显示 
+   cout<<T1[i]<<T2[i]<<T3[i]<<endl;
+ } 
+ cin>>i;*/
+ return 0;
+
+};
